@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Second Chance - Đồ tái chế & Thời trang bền vững</title>
+  <link rel="stylesheet" href="style.css">
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="https://acacia-lab.github.io/my-website/LOGO/LOGO.jpg" alt="Second Chance Logo" height="50" id="logo-home">
+      <h1>Second Chance</h1>
+      <span class="slogan">Mang lại cơ hội mới cho thời trang & môi trường</span>
+    </div>
+    <nav id="mainNav">
+      <button onclick="showSection('home')" id="nav-home">Trang chủ</button>
+      <button onclick="showSection('products')">Sản phẩm</button>
+      <button onclick="showSection('about')">Về chúng tôi</button>
+      <button onclick="showSection('schedule')">Thu gom</button>
+      <button onclick="showSection('history')">Tích điểm</button>
+      <button onclick="showSection('rewards')">Đổi quà</button>
+      <button onclick="showSection('contact')">Liên hệ</button>
+    </nav>
+  </header>
+
+  <section id="home">
+    <div class="hero">
+      <h2>Chào mừng đến với Second Chance!</h2>
+      <p>Chúng tôi mang đến những sản phẩm thời trang độc đáo, thân thiện môi trường từ vật liệu tái chế.</p>
+      <button class="cta" onclick="showSection('products')">Khám phá sản phẩm</button>
+    </div>
+    <div class="features">
+      <div>
+        <img src="https://cdn-icons-png.flaticon.com/512/3050/3050266.png" height="50" alt="Tái chế">
+        <h3>Tái chế sáng tạo</h3>
+        <p>Sử dụng vật liệu đã qua sử dụng để tạo ra sản phẩm mới, độc bản và bền vững.</p>
+      </div>
+      <div>
+        <img src="https://cdn-icons-png.flaticon.com/512/3050/3050267.png" height="50" alt="Bảo vệ môi trường">
+        <h3>Bảo vệ môi trường</h3>
+        <p>Mỗi sản phẩm góp phần giảm thiểu rác thải và bảo vệ hành tinh xanh.</p>
+      </div>
+      <div>
+        <img src="https://cdn-icons-png.flaticon.com/512/3050/3050273.png" height="50" alt="Phong cách riêng">
+        <h3>Phong cách riêng</h3>
+        <p>Thời trang không chỉ đẹp mà còn có câu chuyện ý nghĩa về sự tái sinh.</p>
+      </div>
+    </div>
+  </section>
+  
+  <section id="products" style="display:none">
+    <h2>Bộ sưu tập Second Chance</h2>
+    <div id="productList" class="product-list"></div>
+    <div id="productDetail" class="product-detail" style="display:none"></div>
+  </section>
+
+  <!-- Section hiển thị 3D khi quét QR hoặc bấm Xem 3D -->
+  <section id="product3dviewer" style="display:none">
+    <h2>Trải nghiệm 3D sản phẩm</h2>
+    <model-viewer id="viewer3d" src="" alt="3D Sản phẩm" auto-rotate camera-controls ar shadow-intensity="1"
+      style="width:100%;max-width:600px;height:400px;margin:20px auto;display:block;background:#eee;">
+    </model-viewer>
+    <div id="product3dinfo"></div>
+  </section>
+
+  <section id="about" style="display:none">
+    <h2>Về Second Chance</h2>
+    <div class="about-content">
+      <img src="https://acacia-lab.github.io/my-website/LOGO/LOGO.jpg" alt="Second Chance" class="about-img">
+      <p>
+        <b>Second Chance</b> là thương hiệu thời trang bền vững, tiên phong trong việc tái chế vải vóc, quần áo cũ thành những sản phẩm mới sáng tạo. 
+        Chúng tôi mong muốn lan tỏa lối sống xanh, giảm rác thải may mặc và mang lại giá trị mới cho từng món đồ đã qua sử dụng.
+      </p>
+    </div>
+  </section>
+
+  <section id="schedule" style="display:none">
+    <h2>Thu gom quần áo & Vật liệu</h2>
+    <form id="scheduleForm" onsubmit="submitSchedule(event)">
+      <label>Loại vật liệu: <input required name="type" placeholder="Vải jeans, áo thun, nhựa, ..."></label><br>
+      <label>Thời gian: <input required type="datetime-local" name="time"></label><br>
+      <label>Địa chỉ: <input required name="address"></label><br>
+      <button type="submit">Đặt lịch thu gom</button>
+    </form>
+    <div id="scheduleMsg"></div>
+  </section>
+  
+  <section id="history" style="display:none">
+    <h2>Lịch sử tích điểm</h2>
+    <table border="1" id="historyTable">
+      <thead>
+        <tr><th>Ngày</th><th>Loại vật liệu</th><th>Điểm</th><th>Trạng thái</th></tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+    <div id="totalPoints"></div>
+  </section>
+  
+  <section id="rewards" style="display:none">
+    <h2>Đổi quà hấp dẫn</h2>
+    <ul id="rewardList" class="reward-list"></ul>
+  </section>
+  
+  <section id="contact" style="display:none">
+    <h2>Liên hệ Second Chance</h2>
+    <div class="contact-content">
+      <p>Email: <a href="mailto:contact@secondchance.vn">contact@secondchance.vn</a></p>
+      <p>Hotline: 0389597450</p>
+      <p>Địa chỉ: 331/1 Thống Nhất, Phường 11, Gò Vấp, TP. HCM</p>
+      <p>
+        Mạng xã hội: 
+        <a href="#">Facebook</a> | 
+        <a href="#">Instagram</a>
+      </p>
+    </div>
+  </section>
+
+  <footer>
+    <div>© 2025 Second Chance. All rights reserved.</div>
+    <div>
+      <a href="#" onclick="showSection('about')">Về Second Chance</a> |
+      <a href="#" onclick="showSection('contact')">Liên hệ</a>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
